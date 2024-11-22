@@ -7,112 +7,140 @@
     <style>
         /* Styling CSS tetap sama */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f9f9f9;
-        }
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
 
-        .form-container {
-            width: 700px;
-            padding: 20px;
-            border: 1px solid #000;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+.form-container {
+    width: 700px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        .form-header {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .form-header h1 {
-            font-size: 16px;
-            font-weight: bold;
-            margin: 0;
-            text-transform: uppercase;
-        }
+.form-header h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+    color: #333;
+}
 
-        .form-header p {
-            font-size: 14px;
-            margin: 5px 0 15px;
-            line-height: 1.4;
-        }
+.form-header p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0 15px;
+    line-height: 1.5;
+}
 
-        hr {
-            border: 1px solid #000;
-            margin-bottom: 20px;
-        }
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 20px;
+}
 
-        .form-group {
-            display: flex;
-            margin-bottom: 10px;
-            align-items: center;
-        }
+.form-group {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
 
-        .form-group label {
-            width: 180px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
+.form-group label {
+    width: 180px;
+    font-size: 14px;
+    color: #333;
+    margin-right: 10px;
+}
 
-        .form-group input,
-        .form-group textarea {
-            flex: 1;
-            padding: 5px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
+.form-group input,
+.form-group textarea {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
 
-        .form-group textarea {
-            height: 50px;
-        }
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+    background-color: #fff;
+}
 
-        .form-group:last-child {
-            justify-content: flex-end;
-        }
+.form-group textarea {
+    height: 70px;
+    resize: vertical;
+}
 
-        .form-group button {
-            padding: 8px 16px;
-            font-size: 14px;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+.form-group:last-child {
+    justify-content: flex-end;
+}
 
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
+.form-group button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        .form-footer {
-            margin-top: 20px;
-            text-align: right;
-        }
+.form-group button:hover {
+    background-color: #0056b3;
+}
 
-        .form-footer a {
-            font-size: 14px;
-            color: #007BFF;
-            text-decoration: none;
-        }
+.form-footer {
+    margin-top: 20px;
+    text-align: right;
+}
 
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
+.form-footer a {
+    font-size: 14px;
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.error-message {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+}
+
     </style>
 </head>
 <body>
     <div class="form-container">
-        <div class="form-header">
-            <h1>Kementerian Hukum dan HAM RI</h1>
-            <p>Kantor Wilayah Jawa Barat<br>Lembaga Pemasyarakatan Kelas II B Garut</p>
-        </div>
+    <div class="form-header">
+    <h1><strong>Kementerian Hukum dan HAM RI</strong></h1>
+    <p>
+        <strong>Kantor Wilayah Jawa Barat</strong><br>
+        <strong>Lembaga Pemasyarakatan Kelas II B Garut</strong><br>
+        Jalan K.H Hasan Arief Tel. (0262) 540651-Garut
+    </p>
+</div>
         <hr>
         <form action="{{ isset($document) ? route('documents.update', $document->id) : route('documents.store') }}" method="POST">
             @csrf

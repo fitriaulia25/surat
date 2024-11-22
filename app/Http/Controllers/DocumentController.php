@@ -49,13 +49,13 @@ class DocumentController extends Controller
     }
 
     // Menampilkan detail dokumen
-    public function show($id)
-    {
-        $document = Document::findOrFail($id);
-    
-        return view('documents.show', compact('document'));
-    }
-    
+public function show($id)
+{
+    $document = Document::findOrFail($id);
+
+    return view('documents.show', compact('document'));
+}
+
     // Form edit dokumen
     public function edit($id)
     {

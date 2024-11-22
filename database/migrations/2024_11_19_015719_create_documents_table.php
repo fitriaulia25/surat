@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('kode')->nullable();
             $table->date('tanggal')->nullable();
             $table->string('no_urut')->nullable();
-            $table->string('isi_ringkas');
+            $table->text('isi_ringkas');
             $table->string('lampiran')->nullable();
             $table->string('dari');
             $table->string('kepada');
@@ -25,9 +25,10 @@ return new class extends Migration
             $table->string('no_surat')->nullable();
             $table->string('pengolahan')->nullable();
             $table->text('catatan')->nullable();
-            $table->string('link_surat')->nullable(); // Menambahkan kolom link_surat
+            $table->string('link_surat')->nullable(); // Kolom tambahan
             $table->timestamps();
         });
+           
     }
     
     
