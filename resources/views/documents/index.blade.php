@@ -14,13 +14,12 @@
             padding: 30px;
         }
 
-     
         h1 {
-    text-align: center;
-    color: #333;
-    font-size: 28px; /* Ukuran font h1 */
-    margin-bottom: 20px;
-}
+            text-align: center;
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
 
         .btn {
             display: inline-block;
@@ -107,12 +106,10 @@
         <h1>Daftar Surat</h1>
 
         @if(session('success'))
-    <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #28a745; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; z-index: 1000; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <i class="fas fa-check-circle"></i> {{ session('success') }}
-    </div>
-@endif
-
-
+            <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #28a745; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; z-index: 1000; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
+            </div>
+        @endif
 
         <!-- Tombol Create -->
         <a href="{{ route('documents.create') }}" class="btn btn-success">
@@ -155,8 +152,8 @@
                         <td>{{ $document->pengolahan }}</td>
                         <td>{{ $document->catatan }}</td>
                         <td>
-                        <a href="{{ asset('storage/'.$document->link_surat) }}" target="_blank">
-                            <i class="fas fa-link"></i> Lihat Surat
+                            <a href="{{ asset('storage/'.$document->link_surat) }}" target="_blank">
+                                <i class="fas fa-link"></i> Lihat Surat
                             </a>
                         </td>
                         <td class="action-btns">

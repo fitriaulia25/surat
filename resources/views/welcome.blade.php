@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Surat</title>
     <style>
+        /* Styling CSS tetap sama */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -113,66 +114,105 @@
             <p>Kantor Wilayah Jawa Barat<br>Lembaga Pemasyarakatan Kelas II B Garut</p>
         </div>
         <hr>
-        <form action="{{ $document ? route('documents.update', $document->id) : route('documents.store') }}" method="POST">
+        <form action="{{ isset($document) ? route('documents.update', $document->id) : route('documents.store') }}" method="POST">
             @csrf
-            @if($document)
+            @if(isset($document))
                 @method('PUT')
             @endif
 
             <div class="form-group">
                 <label>Indeks:</label>
                 <input type="text" name="indeks" value="{{ old('indeks', $document->indeks ?? '') }}" required>
+                @error('indeks')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Kode:</label>
                 <input type="text" name="kode" value="{{ old('kode', $document->kode ?? '') }}">
+                @error('kode')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
                 <input type="date" name="tanggal" value="{{ old('tanggal', $document->tanggal ?? '') }}">
+                @error('tanggal')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label>No. Urut:</label>
                 <input type="text" name="no_urut" value="{{ old('no_urut', $document->no_urut ?? '') }}">
+                @error('no_urut')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Isi Ringkas:</label>
                 <textarea name="isi_ringkas" required>{{ old('isi_ringkas', $document->isi_ringkas ?? '') }}</textarea>
+                @error('isi_ringkas')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
-                <label>Lampiran:</label>
-                <input type="text" name="lampiran" value="{{ old('lampiran', $document->lampiran ?? '') }}">
-            </div>
+    <label>Lampiran:</label>
+    <input type="text" name="lampiran" value="{{ old('lampiran', $document->lampiran ?? '') }}">
+    @error('lampiran')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Dari:</label>
+    <input type="text" name="dari" value="{{ old('dari', $document->dari ?? '') }}" required>
+    @error('dari')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Kepada:</label>
+    <input type="text" name="kepada" value="{{ old('kepada', $document->kepada ?? '') }}" required>
+    @error('kepada')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Tanggal Surat:</label>
+    <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat', $document->tanggal_surat ?? '') }}">
+    @error('tanggal_surat')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>No. Surat:</label>
+    <input type="text" name="no_surat" value="{{ old('no_surat', $document->no_surat ?? '') }}">
+    @error('no_surat')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Pengolahan:</label>
+    <input type="text" name="pengolahan" value="{{ old('pengolahan', $document->pengolahan ?? '') }}">
+    @error('pengolahan')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Catatan:</label>
+    <textarea name="catatan">{{ old('catatan', $document->catatan ?? '') }}</textarea>
+    @error('catatan')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Link Surat:</label>
+    <input type="url" name="link_surat" placeholder="Masukkan URL surat" value="{{ old('link_surat', $document->link_surat ?? '') }}">
+    @error('link_surat')
+        <div style="color: red;">{{ $message }}</div>
+    @enderror
+</div>
             <div class="form-group">
-                <label>Dari:</label>
-                <input type="text" name="dari" value="{{ old('dari', $document->dari ?? '') }}" required>
-            </div>
-            <div class="form-group">
-                <label>Kepada:</label>
-                <input type="text" name="kepada" value="{{ old('kepada', $document->kepada ?? '') }}" required>
-            </div>
-            <div class="form-group">
-                <label>Tanggal Surat:</label>
-                <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat', $document->tanggal_surat ?? '') }}">
-            </div>
-            <div class="form-group">
-                <label>No. Surat:</label>
-                <input type="text" name="no_surat" value="{{ old('no_surat', $document->no_surat ?? '') }}">
-            </div>
-            <div class="form-group">
-                <label>Pengolahan:</label>
-                <input type="text" name="pengolahan" value="{{ old('pengolahan', $document->pengolahan ?? '') }}">
-            </div>
-            <div class="form-group">
-                <label>Catatan:</label>
-                <textarea name="catatan">{{ old('catatan', $document->catatan ?? '') }}</textarea>
-            </div>
-            <div class="form-group">
-                <label>Link Surat:</label>
-                <input type="url" name="link_surat" placeholder="Masukkan URL surat" value="{{ old('link_surat', $document->link_surat ?? '') }}">
-            </div>
-            <div class="form-group">
-                <button type="submit">{{ $document ? 'Update Dokumen' : 'Simpan Dokumen' }}</button>
+                <button type="submit">{{ isset($document) ? 'Update Dokumen' : 'Simpan Dokumen' }}</button>
             </div>
         </form>
     </div>

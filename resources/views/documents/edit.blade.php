@@ -81,73 +81,74 @@
             @csrf
             @method('PUT')
 
-           <div class="form-group">
-    <label for="indeks">Indeks:</label>
-    <input type="text" id="indeks" name="indeks" value="{{ $document->indeks }}" required>
-</div>
-
-<div class="form-group">
-    <label for="kode">Kode:</label>
-    <input type="text" id="kode" name="kode" value="{{ $document->kode }}" required>
-</div>
-
-<div class="form-group">
-    <label for="tanggal">Tanggal:</label>
-    <input type="date" id="tanggal" name="tanggal" value="{{ $document->tanggal }}" required>
-</div>
-
-<div class="form-group">
-    <label for="no_urut">No. Urut:</label>
-    <input type="number" id="no_urut" name="no_urut" value="{{ $document->no_urut }}" required>
-</div>
-
-<div class="form-group">
-    <label for="isi_ringkas">Isi Ringkas:</label>
-    <textarea id="isi_ringkas" name="isi_ringkas" rows="4" required>{{ $document->isi_ringkas }}</textarea>
-</div>
-
-<div class="form-group">
-    <label for="dari">Dari:</label>
-    <input type="text" id="dari" name="dari" value="{{ $document->dari }}" required>
-</div>
-
-<div class="form-group">
-    <label for="kepada">Kepada:</label>
-    <input type="text" id="kepada" name="kepada" value="{{ $document->kepada }}" required>
-</div>
-
-<div class="form-group">
-    <label for="no_surat">No. Surat:</label>
-    <input type="text" id="no_surat" name="no_surat" value="{{ $document->no_surat }}" required>
-</div>
-
-<div class="form-group">
-    <label for="lampiran">Lampiran:</label>
-    <input type="text" id="lampiran" name="lampiran" value="{{ $document->lampiran }}">
-</div>
-
-<div class="form-group">
-    <label for="tanggal_surat">Tanggal Surat:</label>
-    <input type="date" id="tanggal_surat" name="tanggal_surat" value="{{ $document->tanggal_surat }}">
-</div>
-
-<div class="form-group">
-    <label for="pengolahan">Pengolahan:</label>
-    <input type="text" id="pengolahan" name="pengolahan" value="{{ $document->pengolahan }}">
-</div>
-
-<div class="form-group">
-    <label for="catatan">Catatan:</label>
-    <textarea id="catatan" name="catatan" rows="4">{{ $document->catatan }}</textarea>
-</div>
-<div class="form-group">
-            <label for="link_surat">Link Surat</label>
-            <input type="text" id="link_surat" name="link_surat" value="{{ $document->link_surat }}" required>
+            <div class="form-group">
+                <label for="indeks">Indeks:</label>
+                <input type="text" id="indeks" name="indeks" value="{{ $document->indeks }}" required>
             </div>
-            
+
+            <div class="form-group">
+                <label for="kode">Kode:</label>
+                <input type="text" id="kode" name="kode" value="{{ $document->kode }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" id="tanggal" name="tanggal" value="{{ $document->tanggal }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_urut">No. Urut:</label>
+                <input type="number" id="no_urut" name="no_urut" value="{{ $document->no_urut }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="isi_ringkas">Isi Ringkas:</label>
+                <textarea id="isi_ringkas" name="isi_ringkas" rows="4" required>{{ $document->isi_ringkas }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="dari">Dari:</label>
+                <input type="text" id="dari" name="dari" value="{{ $document->dari }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="kepada">Kepada:</label>
+                <input type="text" id="kepada" name="kepada" value="{{ $document->kepada }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="no_surat">No. Surat:</label>
+                <input type="text" id="no_surat" name="no_surat" value="{{ $document->no_surat }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lampiran">Lampiran:</label>
+                <input type="text" id="lampiran" name="lampiran" value="{{ $document->lampiran }}">
+            </div>
+
+            <div class="form-group">
+                <label for="tanggal_surat">Tanggal Surat:</label>
+                <input type="date" id="tanggal_surat" name="tanggal_surat" value="{{ $document->tanggal_surat }}">
+            </div>
+
+            <div class="form-group">
+                <label for="pengolahan">Pengolahan:</label>
+                <input type="text" id="pengolahan" name="pengolahan" value="{{ $document->pengolahan }}">
+            </div>
+
+            <div class="form-group">
+                <label for="catatan">Catatan:</label>
+                <textarea id="catatan" name="catatan" rows="4">{{ $document->catatan }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="link_surat">Link Surat</label>
+                <input type="text" id="link_surat" name="link_surat" value="{{ $document->link_surat }}" required>
+            </div>
+
             <button type="submit">Simpan Perubahan</button>
             <a href="{{ route('documents.index') }}" class="btn-cancel">Batal</a>
         </form>
     </div>
-</body>
+    </body>
 </html>

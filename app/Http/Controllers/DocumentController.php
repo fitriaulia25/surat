@@ -7,87 +7,97 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
+    // Menampilkan semua dokumen
     public function index()
     {
-        // Ambil semua data dari tabel documents, urutkan berdasarkan data terbaru
-        $documents = Document::latest()->get();
-
-        // Kirim data ke view
+        $documents = Document::latest()->get(); // Ambil data terbaru
         return view('documents.index', compact('documents'));
     }
+
+    // Form tambah dokumen baru
+    public function create()
+    {
+        return view('documents.form'); // Arahkan ke form tambah
+    }
+
+    // Menyimpan dokumen baru
     public function store(Request $request)
     {
-        // Validasi data input
+        // Validasi input
         $validated = $request->validate([
-            'indeks' => 'required|string|max:255',
-            'kode' => 'nullable|string|max:255',
-            'tanggal' => 'required|date',
-           'no_urut' => 'required|integer|unique:documents,no_urut',
+            'indeks' => 'required|string',
+            'kode' => 'nullable|string',
+            'tanggal' => 'nullable|date',
+            'no_urut' => 'nullable|string',
             'isi_ringkas' => 'required|string',
-            'lampiran' => 'nullable|string|max:255',
-            'dari' => 'required|string|max:255',
-            'kepada' => 'required|string|max:255',
+            'lampiran' => 'nullable|string',
+            'dari' => 'required|string',
+            'kepada' => 'required|string',
             'tanggal_surat' => 'nullable|date',
-            'no_surat' => 'nullable|string|max:255',
-            'pengolahan' => 'nullable|string|max:255',
+            'no_surat' => 'nullable|string',
+            'pengolahan' => 'nullable|string',
             'catatan' => 'nullable|string',
             'link_surat' => 'nullable|url',
         ]);
     
-        // Simpan data ke database
-        Document::create($validated);
+        // Simpan ke database
+        $document = Document::create($validated);
     
-        // Redirect ke halaman tabel hasil input
-        return redirect()->route('documents.index')->with('success', 'Data berhasil disimpan!');
+        // Redirect ke halaman hasil inputan dengan pesan sukses
+        return redirect()->route('documents.show', $document->id)
+                         ->with('success', 'Dokumen berhasil disimpan!');
     }
 
-    public function create()
-{
-    return view('documents.form', ['document' => null]);
-}
+    // Menampilkan detail dokumen
+    public function show($id)
+    {
+        $document = Document::findOrFail($id);
+    
+        return view('documents.show', compact('document'));
+    }
+    
+    // Form edit dokumen
+    public function edit($id)
+    {
+        $document = Document::findOrFail($id); // Cari dokumen
+        return view('documents.form', compact('document')); // Arahkan ke form edit
+    }
 
-public function edit($id)
+    // Update dokumen
+  public function update(Request $request, $id)
 {
-    $document = Document::findOrFail($id);
-    return view('documents.form', compact('document'));
-}
-
-public function destroy($id)
-{
-    $document = Document::findOrFail($id);
-    $document->delete();
-
-    return redirect()->route('documents.index')->with('success', 'Data berhasil dihapus!');
-}
-
-public function update(Request $request, $id)
-{
-    // Validasi data input
-    $request->validate([
-        'indeks' => 'required|string|max:255',
-        'kode' => 'nullable|string|max:255',
-        'tanggal' => 'required|date',
-        'no_urut' => 'required|integer|unique:documents,no_urut,' . $document->id,  
-         'isi_ringkas' => 'required|string',
-        'lampiran' => 'nullable|string|max:255',
-        'dari' => 'required|string|max:255',
-        'kepada' => 'required|string|max:255',
+    // Validasi input
+    $validated = $request->validate([
+        'indeks' => 'required|string',
+        'kode' => 'nullable|string',
+        'tanggal' => 'nullable|date',
+        'no_urut' => 'nullable|string',
+        'isi_ringkas' => 'required|string',
+        'lampiran' => 'nullable|string',
+        'dari' => 'required|string',
+        'kepada' => 'required|string',
         'tanggal_surat' => 'nullable|date',
-        'no_surat' => 'nullable|string|max:255',
-        'pengolahan' => 'nullable|string|max:255',
+        'no_surat' => 'nullable|string',
+        'pengolahan' => 'nullable|string',
         'catatan' => 'nullable|string',
         'link_surat' => 'nullable|url',
     ]);
 
-    // Ambil data berdasarkan ID
+    // Cari data dokumen dan update
     $document = Document::findOrFail($id);
+    $document->update($validated);
 
-    // Update data
-    $document->update($request->all());
-
-    // Redirect ke halaman daftar surat
-    return redirect()->route('documents.index')->with('success', 'Data surat berhasil diperbarui!');
+    // Redirect ke halaman hasil inputan dengan pesan sukses
+    return redirect()->route('documents.show', $document->id)
+                     ->with('success', 'Dokumen berhasil diperbarui!');
 }
 
+    // Hapus dokumen
+    public function destroy($id)
+    {
+        $document = Document::findOrFail($id);
+        $document->delete();
 
+        return redirect()->route('documents.index')->with('success', 'Dokumen berhasil dihapus.');
+    }
 }
