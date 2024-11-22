@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fff;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 30px;
         }
@@ -70,12 +70,16 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         th, td {
             text-align: left;
             padding: 12px;
-            border: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
         }
 
         th {
@@ -98,6 +102,21 @@
 
         .action-btns form {
             margin: 0;
+        }
+
+        .link-surat a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-surat a:hover {
+            text-decoration: underline;
+        }
+
+        .link-surat i {
+            margin-right: 5px;
+            color: #007bff;
         }
     </style>
 </head>
@@ -151,8 +170,8 @@
                         <td>{{ $document->no_surat }}</td>
                         <td>{{ $document->pengolahan }}</td>
                         <td>{{ $document->catatan }}</td>
-                        <td>
-                            <a href="{{ asset('storage/'.$document->link_surat) }}" target="_blank">
+                        <td class="link-surat">
+                            <a href="{{ $document->link_surat }}" target="_blank">
                                 <i class="fas fa-link"></i> Lihat Surat
                             </a>
                         </td>

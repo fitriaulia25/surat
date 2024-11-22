@@ -8,58 +8,102 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
+            padding: 0;
+            background-color: #f4f6f8;
         }
 
         .container {
             max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
         }
 
         h1 {
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
             text-align: center;
             margin-bottom: 20px;
         }
 
         .success-message {
-            color: green;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            text-align: center;
             font-size: 16px;
             margin-bottom: 20px;
-            text-align: center;
         }
 
         ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         ul li {
-            margin-bottom: 10px;
-            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #e8e8e8;
         }
 
         ul li strong {
-            display: inline-block;
-            width: 150px;
+            font-weight: bold;
+            color: #555;
+            width: 180px;
+            flex-shrink: 0;
         }
 
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 16px;
+        ul li span {
+            flex-grow: 1;
+            color: #333;
+            text-align: left;
+        }
+
+        ul li a {
             color: #007BFF;
             text-decoration: none;
         }
 
-        a:hover {
+        ul li a:hover {
             text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .back-link:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            ul li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            ul li strong {
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
@@ -73,23 +117,23 @@
 
         <h1>Detail Dokumen</h1>
         <ul>
-            <li><strong>Indeks:</strong> {{ $document->indeks }}</li>
-            <li><strong>Kode:</strong> {{ $document->kode }}</li>
-            <li><strong>Tanggal:</strong> {{ $document->tanggal }}</li>
-            <li><strong>No. Urut:</strong> {{ $document->no_urut }}</li>
-            <li><strong>Isi Ringkas:</strong> {{ $document->isi_ringkas }}</li>
-            <li><strong>Lampiran:</strong> {{ $document->lampiran }}</li>
-            <li><strong>Dari:</strong> {{ $document->dari }}</li>
-            <li><strong>Kepada:</strong> {{ $document->kepada }}</li>
-            <li><strong>Tanggal Surat:</strong> {{ $document->tanggal_surat }}</li>
-            <li><strong>No. Surat:</strong> {{ $document->no_surat }}</li>
-            <li><strong>Pengolahan:</strong> {{ $document->pengolahan }}</li>
-            <li><strong>Catatan:</strong> {{ $document->catatan }}</li>
+            <li><strong>Indeks:</strong> <span>{{ $document->indeks }}</span></li>
+            <li><strong>Kode:</strong> <span>{{ $document->kode }}</span></li>
+            <li><strong>Tanggal:</strong> <span>{{ $document->tanggal }}</span></li>
+            <li><strong>No. Urut:</strong> <span>{{ $document->no_urut }}</span></li>
+            <li><strong>Isi Ringkas:</strong> <span>{{ $document->isi_ringkas }}</span></li>
+            <li><strong>Lampiran:</strong> <span>{{ $document->lampiran }}</span></li>
+            <li><strong>Dari:</strong> <span>{{ $document->dari }}</span></li>
+            <li><strong>Kepada:</strong> <span>{{ $document->kepada }}</span></li>
+            <li><strong>Tanggal Surat:</strong> <span>{{ $document->tanggal_surat }}</span></li>
+            <li><strong>No. Surat:</strong> <span>{{ $document->no_surat }}</span></li>
+            <li><strong>Pengolahan:</strong> <span>{{ $document->pengolahan }}</span></li>
+            <li><strong>Catatan:</strong> <span>{{ $document->catatan }}</span></li>
             <li><strong>Link Surat:</strong> 
-                <a href="{{ $document->link_surat }}" target="_blank">{{ $document->link_surat }}</a>
+                <span><a href="{{ $document->link_surat }}" target="_blank">{{ $document->link_surat }}</a></span>
             </li>
         </ul>
-        <a href="{{ route('documents.index') }}">Kembali ke Daftar Dokumen</a>
+        <a href="{{ route('documents.index') }}" class="back-link">Kembali ke Daftar Dokumen</a>
     </div>
 </body>
 </html>
