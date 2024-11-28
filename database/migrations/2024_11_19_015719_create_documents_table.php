@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('indeks');
             $table->string('kode')->nullable();
             $table->date('tanggal')->nullable();
-            $table->string('no_urut')->nullable();
-            $table->text('isi_ringkas');
+            $table->integer('no_urut')->unique();            $table->text('isi_ringkas');
             $table->string('lampiran')->nullable();
             $table->string('dari');
             $table->string('kepada');
