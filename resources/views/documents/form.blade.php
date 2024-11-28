@@ -99,9 +99,11 @@
                 <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal', $document->tanggal ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="no_urut">No. Urut:</label>
-                <input type="text" name="no_urut" id="no_urut" value="{{ old('no_urut', $document->no_urut ?? '') }}">
-            </div>
+            <label for="no_urut">Nomor Urut</label>
+            <input type="text" name="no_urut" id="no_urut" class="form-control" 
+             value="{{ \App\Models\Document::getAvailableNumber() }}" 
+             readonly>
+          </div>
             <div class="form-group">
                 <label for="isi_ringkas">Isi Ringkas:</label>
                 <textarea name="isi_ringkas" id="isi_ringkas" required>{{ old('isi_ringkas', $document->isi_ringkas ?? '') }}</textarea>

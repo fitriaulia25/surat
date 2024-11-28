@@ -23,12 +23,11 @@ class DocumentController extends Controller
     // Menyimpan dokumen baru
     public function store(Request $request)
     {
-        // Validasi input
+        // Validasi input tanpa 'no_urut' karena akan di-generate otomatis
         $validated = $request->validate([
             'indeks' => 'required|string',
             'kode' => 'nullable|string',
             'tanggal' => 'nullable|date',
-            'no_urut' => 'nullable|string',
             'isi_ringkas' => 'required|string',
             'lampiran' => 'nullable|string',
             'dari' => 'required|string',
@@ -40,14 +39,17 @@ class DocumentController extends Controller
             'link_surat' => 'nullable|url',
         ]);
     
-        // Simpan ke database
+        // Ambil nomor urut yang tersedia
+        $validated['no_urut'] = Document::getAvailableNumber();
+    
+        // Simpan data ke database
         $document = Document::create($validated);
     
-        // Redirect ke halaman hasil inputan dengan pesan sukses
+        // Redirect ke halaman detail dokumen
         return redirect()->route('documents.show', $document->id)
-                         ->with('success', 'Dokumen berhasil disimpan!');
+                         ->with('success', 'Dokumen berhasil disimpan dengan nomor urut ' . $validated['no_urut'] . '!');
     }
-
+    
     // Menampilkan detail dokumen
 public function show($id)
 {
@@ -64,14 +66,14 @@ public function show($id)
     }
 
     // Update dokumen
-  public function update(Request $request, $id)
+public function update(Request $request, $id)
 {
     // Validasi input
     $validated = $request->validate([
         'indeks' => 'required|string',
         'kode' => 'nullable|string',
         'tanggal' => 'nullable|date',
-        'no_urut' => 'nullable|string',
+        'no_urut' => 'required|integer|min:1',
         'isi_ringkas' => 'required|string',
         'lampiran' => 'nullable|string',
         'dari' => 'required|string',
@@ -83,8 +85,18 @@ public function show($id)
         'link_surat' => 'nullable|url',
     ]);
 
-    // Cari data dokumen dan update
+    // Cari dokumen lama
     $document = Document::findOrFail($id);
+
+    // Cek apakah no_urut sudah digunakan oleh dokumen lain
+    $isUsed = Document::where('no_urut', $validated['no_urut'])
+                      ->where('id', '!=', $id)
+                      ->exists();
+    if ($isUsed) {
+        return back()->withErrors(['no_urut' => 'Nomor urut ini sudah digunakan!']);
+    }
+
+    // Update dokumen
     $document->update($validated);
 
     // Redirect ke halaman hasil inputan dengan pesan sukses
