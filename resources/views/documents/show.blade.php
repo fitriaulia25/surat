@@ -117,17 +117,17 @@
 
         <h1>Detail Dokumen</h1>
         <ul>
-            <li><strong>Indeks:</strong> <span>{{ $document->indeks }}</span></li>
-            <li><strong>Kode:</strong> <span>{{ $document->kode }}</span></li>
-            <li><strong>Tanggal:</strong> <span>{{ $document->tanggal }}</span></li>
             <li><strong>No. Urut:</strong> <span>{{ $document->no_urut }}</span></li>
-            <li><strong>Isi Ringkas:</strong> <span>{{ $document->isi_ringkas }}</span></li>
+            <li><strong>Tanggal:</strong> <span>{{ $document->tanggal }}</span></li>
             <li><strong>Lampiran:</strong> <span>{{ $document->lampiran }}</span></li>
             <li><strong>Dari:</strong> <span>{{ $document->dari }}</span></li>
             <li><strong>Kepada:</strong> <span>{{ $document->kepada }}</span></li>
             <li><strong>Tanggal Surat:</strong> <span>{{ $document->tanggal_surat }}</span></li>
+            <li><strong>Indeks:</strong> <span>{{ $document->indeks }}</span></li>
+            <li><strong>Kode:</strong> <span>{{ $document->kode }}</span></li>
             <li><strong>No. Surat:</strong> <span>{{ $document->no_surat }}</span></li>
             <li><strong>Pengolahan:</strong> <span>{{ $document->pengolahan }}</span></li>
+            <li><strong>Isi Ringkas:</strong> <span>{{ $document->isi_ringkas }}</span></li>
             <li><strong>Catatan:</strong> <span>{{ $document->catatan }}</span></li>
             <li><strong>Link Surat:</strong> 
                 <span><a href="{{ $document->link_surat }}" target="_blank">{{ $document->link_surat }}</a></span>

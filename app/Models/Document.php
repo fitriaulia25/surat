@@ -7,25 +7,42 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-   protected $fillable = [
-    'indeks', 'kode', 'tanggal', 'no_urut', 'isi_ringkas', 
-    'lampiran', 'dari', 'kepada', 'tanggal_surat', 'no_surat', 
-    'pengolahan', 'catatan', 'link_surat', // Menambahkan kolom link_surat
-];
+    use HasFactory;
 
-public static function getAvailableNumber()
-{
-    // Ambil semua nomor urut yang sudah terpakai
-    $usedNumbers = self::pluck('no_urut')->toArray();
+    // Kolom yang dapat diisi (mass assignable)
+    protected $fillable = [
+        'no_urut',
+        'tanggal',
+        'lampiran',
+        'dari',
+        'kepada',
+        'tanggal_surat',
+        'indeks',
+        'kode',
+        'no_surat',
+        'pengolahan',
+        'isi_ringkas',
+        'catatan',
+        'link_surat',
+    ];
 
-    // Cari nomor urut terkecil yang belum terpakai
-    $availableNumber = 1;
-    while (in_array($availableNumber, $usedNumbers)) {
-        $availableNumber++;
-    }
+    // Override method boot untuk mengatur event model
+    protected static function boot()
+    {
+        parent::boot(); // Pastikan parent boot dipanggil terlebih dahulu
 
-    return $availableNumber;
-}
+        // Event sebelum data dibuat
+        static::creating(function ($document) {
+            $year = now()->year;
 
+            // Generate no_urut untuk tahun berjalan
+            $lastUrut = self::whereYear('created_at', $year)->max('no_urut') ?? 0;
+            $document->no_urut = $lastUrut + 1;
 
+            // Generate no_surat untuk tahun berjalan
+            $lastSurat = self::whereYear('created_at', $year)->max('no_surat') ?? 0;
+            $document->no_surat = str_pad($lastSurat + 1, 3, '0', STR_PAD_LEFT);
+        });
+ 
+   }
 }

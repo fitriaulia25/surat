@@ -13,21 +13,23 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('indeks');
-            $table->string('kode')->nullable();
+            $table->unsignedInteger('no_urut'); // Kolom untuk no urut
+            $table->string('no_surat', 3); // Kolom untuk no surat
             $table->date('tanggal')->nullable();
-            $table->integer('no_urut')->unique();            $table->text('isi_ringkas');
             $table->string('lampiran')->nullable();
-            $table->string('dari');
-            $table->string('kepada');
+            $table->string('dari')->nullable();
+            $table->string('kepada')->nullable();
             $table->date('tanggal_surat')->nullable();
-            $table->string('no_surat')->nullable();
+            $table->string('indeks')->nullable();
+            $table->string('kode')->nullable();
             $table->string('pengolahan')->nullable();
+            $table->text('isi_ringkas')->nullable();
             $table->text('catatan')->nullable();
-            $table->string('link_surat')->nullable(); // Kolom tambahan
+            $table->string('link_surat')->nullable();
             $table->timestamps();
         });
-           
+        
+                   
     }
     
     

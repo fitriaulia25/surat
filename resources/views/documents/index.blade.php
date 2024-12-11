@@ -139,17 +139,17 @@
         <table>
             <thead>
                 <tr>
-                    <th>Indeks</th>
-                    <th>Kode</th>
-                    <th>Tanggal</th>
                     <th>No. Urut</th>
-                    <th>Isi Ringkas</th>
+                    <th>Tanggal</th>
                     <th>Lampiran</th>
                     <th>Dari</th>
                     <th>Kepada</th>
                     <th>Tanggal Surat</th>
+                    <th>Indeks</th>
+                    <th>Kode</th>
                     <th>No. Surat</th>
                     <th>Pengolahan</th>
+                    <th>Isi Ringkas</th>
                     <th>Catatan</th>
                     <th>Link Surat</th>
                     <th>Aksi</th>
@@ -158,17 +158,17 @@
             <tbody>
                 @foreach($documents as $document)
                     <tr>
-                        <td>{{ $document->indeks }}</td>
-                        <td>{{ $document->kode }}</td>
-                        <td>{{ $document->tanggal }}</td>
                         <td>{{ $document->no_urut }}</td>
-                        <td>{{ $document->isi_ringkas }}</td>
+                        <td>{{ $document->tanggal }}</td>
                         <td>{{ $document->lampiran }}</td>
                         <td>{{ $document->dari }}</td>
                         <td>{{ $document->kepada }}</td>
                         <td>{{ $document->tanggal_surat }}</td>
+                        <td>{{ $document->indeks }}</td>
+                        <td>{{ $document->kode }}</td>
                         <td>{{ $document->no_surat }}</td>
                         <td>{{ $document->pengolahan }}</td>
+                        <td>{{ $document->isi_ringkas }}</td>
                         <td>{{ $document->catatan }}</td>
                         <td class="link-surat">
                             <a href="{{ $document->link_surat }}" target="_blank">

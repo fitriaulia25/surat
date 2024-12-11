@@ -87,59 +87,56 @@
             @endif
             
             <div class="form-group">
-                <label for="indeks">Indeks:</label>
-                <input type="text" name="indeks" id="indeks" value="{{ old('indeks', $document->indeks ?? '') }}" required>
+                <label>No. Urut:</label>
+                <input type="text" name="no_urut" value="{{ old('no_urut', $nextUrut ?? '') }}" readonly>
             </div>
             <div class="form-group">
-                <label for="kode">Kode:</label>
-                <input type="text" name="kode" id="kode" value="{{ old('kode', $document->kode ?? '') }}">
+                <label>Tanggal:</label>
+                <input type="date" name="tanggal" value="{{ old('tanggal', $document->tanggal ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="tanggal">Tanggal:</label>
-                <input type="date" name="tanggal" id="tanggal" value="{{ old('tanggal', $document->tanggal ?? '') }}">
+                <label>Lampiran:</label>
+                <input type="text" name="lampiran" value="{{ old('lampiran', $document->lampiran ?? '') }}">
             </div>
             <div class="form-group">
-            <label for="no_urut">Nomor Urut</label>
-            <input type="text" name="no_urut" id="no_urut" class="form-control" 
-             value="{{ \App\Models\Document::getAvailableNumber() }}" 
-             readonly>
-          </div>
-            <div class="form-group">
-                <label for="isi_ringkas">Isi Ringkas:</label>
-                <textarea name="isi_ringkas" id="isi_ringkas" required>{{ old('isi_ringkas', $document->isi_ringkas ?? '') }}</textarea>
+                <label>Dari:</label>
+                <input type="text" name="dari" value="{{ old('dari', $document->dari ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="lampiran">Lampiran:</label>
-                <input type="text" name="lampiran" id="lampiran" value="{{ old('lampiran', $document->lampiran ?? '') }}">
+                <label>Kepada:</label>
+                <input type="text" name="kepada" value="{{ old('kepada', $document->kepada ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="dari">Dari:</label>
-                <input type="text" name="dari" id="dari" value="{{ old('dari', $document->dari ?? '') }}" required>
+                <label>Tanggal Surat:</label>
+                <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat', $document->tanggal_surat ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="kepada">Kepada:</label>
-                <input type="text" name="kepada" id="kepada" value="{{ old('kepada', $document->kepada ?? '') }}" required>
+                <label>Indeks:</label>
+                <input type="text" name="indeks" value="{{ old('indeks', $document->indeks ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="tanggal_surat">Tanggal Surat:</label>
-                <input type="date" name="tanggal_surat" id="tanggal_surat" value="{{ old('tanggal_surat', $document->tanggal_surat ?? '') }}">
+                <label>Kode:</label>
+                <input type="text" name="kode" value="{{ old('kode', $document->kode ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="no_surat">No. Surat:</label>
-                <input type="text" name="no_surat" id="no_surat" value="{{ old('no_surat', $document->no_surat ?? '') }}">
+                <label>No. Surat:</label>
+                <input type="text" name="no_surat" value="{{ old('no_surat', $nextSurat ?? '') }}" readonly>
             </div>
             <div class="form-group">
-                <label for="pengolahan">Pengolahan:</label>
-                <input type="text" name="pengolahan" id="pengolahan" value="{{ old('pengolahan', $document->pengolahan ?? '') }}">
+                <label>Pengolahan:</label>
+                <input type="text" name="pengolahan" value="{{ old('pengolahan', $document->pengolahan ?? '') }}">
             </div>
             <div class="form-group">
-                <label for="catatan">Catatan:</label>
-                <textarea name="catatan" id="catatan">{{ old('catatan', $document->catatan ?? '') }}</textarea>
+                <label>Isi Ringkasan:</label>
+                <textarea name="isi_ringkas">{{ old('isi_ringkas', $document->isi_ringkas ?? '') }}</textarea>
             </div>
             <div class="form-group">
-                <label for="link_surat">Link Surat:</label>
-                <input type="url" name="link_surat" id="link_surat" value="{{ old('link_surat', $document->link_surat ?? '') }}">
+                <label>Catatan:</label>
+                <textarea name="catatan">{{ old('catatan', $document->catatan ?? '') }}</textarea>
             </div>
+            <div class="form-group">
+                <label>Link Surat:</label>
+                <input type="url" name="link_surat" id="link_surat" value="{{ old('link_surat', $document->link_surat ?? '') }}">            </div>
             <button type="submit">{{ isset($document) ? 'Update' : 'Simpan' }}</button>
         </form>
         <a href="{{ route('documents.index') }}">Kembali ke Daftar Dokumen</a>

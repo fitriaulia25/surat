@@ -115,63 +115,66 @@
         <hr>
         <form action="{{ route('documents.store') }}" method="POST">
             @csrf
-           <div class="form-group">
-                <label>Indeks:</label>
-                <input type="text" name="indeks" required>
-            </div>
             <div class="form-group">
-                <label>Kode:</label>
-                <input type="text" name="kode">
-            </div>
+    <label for="no_urut">No. Urut:</label>
+    <input type="text" id="no_urut" name="no_urut" class="form-control" 
+           value="{{ old('no_urut', $nextUrut) }}" readonly>
+</div>
             <div class="form-group">
                 <label>Tanggal:</label>
-                <input type="date" name="tanggal">
-            </div>
-            <div class="form-group">
-                <label>No. Urut :</label>
-                <input type="text" name="no_urut">
-            </div>
-            <div class="form-group">
-                <label>Isi Ringkas:</label>
-                <textarea name="isi_ringkas" required></textarea>
+                <input type="date" name="tanggal" value="{{ old('tanggal', $document->tanggal ?? '') }}">
             </div>
             <div class="form-group">
                 <label>Lampiran:</label>
-                <input type="text" name="lampiran">
+                <input type="text" name="lampiran" value="{{ old('lampiran', $document->lampiran ?? '') }}">
             </div>
             <div class="form-group">
                 <label>Dari:</label>
-                <input type="text" name="dari" required>
+                <input type="text" name="dari" value="{{ old('dari', $document->dari ?? '') }}">
             </div>
             <div class="form-group">
                 <label>Kepada:</label>
-                <input type="text" name="kepada" required>
+                <input type="text" name="kepada" value="{{ old('kepada', $document->kepada ?? '') }}">
             </div>
             <div class="form-group">
                 <label>Tanggal Surat:</label>
-                <input type="date" name="tanggal_surat">
+                <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat', $document->tanggal_surat ?? '') }}">
             </div>
             <div class="form-group">
-                <label>No. Surat:</label>
-                <input type="text" name="no_surat">
+                <label>Indeks:</label>
+                <input type="text" name="indeks" value="{{ old('indeks', $document->indeks ?? '') }}">
             </div>
+            <div class="form-group">
+                <label>Kode:</label>
+                <input type="text" name="kode" value="{{ old('kode', $document->kode ?? '') }}">
+            </div>
+            <div class="form-group">
+    <label for="no_surat">No. Surat:</label>
+    <input type="text" id="no_surat" name="no_surat" class="form-control" 
+           value="{{ old('no_surat', $nextSurat) }}" readonly>
+</div>
             <div class="form-group">
                 <label>Pengolahan:</label>
-                <input type="text" name="pengolahan">
+                <input type="text" name="pengolahan" value="{{ old('pengolahan', $document->pengolahan ?? '') }}">
+            </div>
+            <div class="form-group">
+                <label>Isi Ringkasan:</label>
+                <textarea name="isi_ringkas">{{ old('isi_ringkas', $document->isi_ringkas ?? '') }}</textarea>
             </div>
             <div class="form-group">
                 <label>Catatan:</label>
-                <textarea name="catatan"></textarea>
+                <textarea name="catatan">{{ old('catatan', $document->catatan ?? '') }}</textarea>
             </div>
-            
             <div class="form-group">
-    <label>Link Surat:</label>
-    <input type="url" name="link_surat" placeholder="Masukkan URL surat">
-</div>
+                <label>Link Surat:</label>
+                <input type="url" name="link_surat" id="link_surat" value="{{ old('link_surat', $document->link_surat ?? '') }}">            </div>
             <div class="form-group">
                 <button type="submit">Simpan</button>
             </div>
         </form>
+        <div class="form-footer">
+            <a href="{{ route('documents.index') }}">Kembali ke Daftar Dokumen</a>
+        </div>
     </div>
 </body>
 </html>
